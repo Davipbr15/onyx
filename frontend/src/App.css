@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.placeholder--center::placeholder{
+  text-align:center;
+}
+
+.body{
+  background-color: aquamarine;
+}
+
+.min {
+  min-height: 30px;
+}
+
+.placeholder--center{
+  text-align: center;
+}

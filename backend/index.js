@@ -2,6 +2,7 @@ const express = require("express");
 const app = (express());
 const mysql = require("mysql2");
 const cors = require("cors");
+const name = "davi";
 
 const db = mysql.createPool({
     host:"127.0.0.1",

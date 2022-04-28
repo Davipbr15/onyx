@@ -9,6 +9,7 @@ import Axios from "axios";
 import produce from "immer";
 
 export default function FormDialog(props) {
+
   const [editValues, setEditValues] = useState({
     id: props.id,
     produto: props.produto,
@@ -27,11 +28,13 @@ export default function FormDialog(props) {
     props.setOpen(false);
   };
 
+  const [listCard,setListCard] = useState();
+
   const handleEditProduto = () => {
     Axios.put("http://localhost:3002/editProdutos", {
       id: editValues.id,
       produto: editValues.name,
-      desc: editValues.desc,
+      desc_p: editValues.desc,
       preco: editValues.preco,
     }).then(() => {
       props.setListCard(
@@ -40,7 +43,7 @@ export default function FormDialog(props) {
             ? {
                 id: editValues.id,
                 produto: editValues.produto,
-                desc: editValues.desc,
+                desc_p: editValues.desc,
                 preco: editValues.preco,
               }
             : value;
@@ -112,13 +115,13 @@ export default function FormDialog(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Cancelar.
+            Cancelar
           </Button>
           <Button color="primary" onClick={() => handleDeleteProduto()}>
-            Excluir.
+            Excluir
           </Button>
           <Button color="primary" onClick={() => handleEditProduto()}>
-            Salvar.
+            Salvar
           </Button>
         </DialogActions>
       </Dialog>

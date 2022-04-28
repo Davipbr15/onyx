@@ -1,10 +1,10 @@
 const express = require("express");
 const app = (express());
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const cors = require("cors");
 
 const db = mysql.createPool({
-    host:"localhost",
+    host:"127.0.0.1",
     user:"root",
     password:"",
     database:"dataOnyx",

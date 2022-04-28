@@ -4,15 +4,15 @@ import Link from 'next/link';
 function Header(){
       const [navbarOpen, setNavbarOpen] = React.useState(false);
     return(
-            <div className="sticky top-0 w-full z-30 clearNav bg-white border-indigo-600 border-b-2 md:bg-opacity-90 transition duration-300 ease-in-out">
+            <div className="sticky top-0 w-full z-30 clearNav bg-current border-indigo-900 border-b-2 transition duration-300 ease-in-out">
               <div className="flex flex-col max-w-6xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
                 <div className="flex flex-row items-center justify-between p-4">
                   <a
                     href="/"
                     className="text-lg font-semibold rounded-lg tracking-widest focus:outline-none focus:shadow-outline"
                   >
-                    <h1 className="text-4xl Avenir tracking-tighter text-gray-900 md:text-4x1 lg:text-3xl">
-                      HEADER
+                    <h1 className="text-4xl Avenir tracking-tighter text-white md:text-4x1 lg:text-3xl">
+                      ONYX
                     </h1>
                   </a>
                   <button
@@ -51,7 +51,7 @@ function Header(){
                       <Link href="/">
                         <a
                           href="/"
-                          className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
+                          className="font-medium text-gray-600 hover:text-white px-5 py-3 flex items-center transition duration-150 ease-in-out"
                         >
                           HOME
                         </a>
@@ -61,7 +61,7 @@ function Header(){
                       <Link href="/registrar">
                         <a
                           href="/"
-                          className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
+                          className="font-medium text-gray-600 hover:text-white px-5 py-3 flex items-center transition duration-150 ease-in-out"
                         >
                           REGISTRAR
                         </a>
@@ -71,7 +71,7 @@ function Header(){
                       <Link href="/produtos">
                         <a
                           href="/"
-                          className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
+                          className="font-medium text-gray-600 hover:text-white px-5 py-3 flex items-center transition duration-150 ease-in-out"
                         >
                           PRODUTOS
                         </a>
@@ -79,7 +79,7 @@ function Header(){
                       </li>
                       <li>
                         <a
-                          className="inline-flex items-center px-4 py-2 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent rounded-lg text-md md:mt-0 md:ml-4 bg-gray-900"
+                          className="inline-flex items-center px-4 py-2 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent rounded-lg text-md md:mt-0 md:ml-4 bg-indigo-900"
                           href="/"
                         >
                           <span className="justify-center">Download</span>

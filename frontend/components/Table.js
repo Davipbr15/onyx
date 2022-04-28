@@ -6,6 +6,7 @@ import FormDialog from '../components/Dialog';
 export default function Card(props) {
 
   const [listProducts, setListProducts] = useState();
+  
   const [open, setOpen] = React.useState(false);
 
   const handleClickCard = () =>{
@@ -36,24 +37,94 @@ export default function Card(props) {
     setListCard={props.setListCard}
     id={props.id}
     />
-
-    <div className="flex mx-auto" onClick={() => handleClickCard()}>
-    <div className="hover:bg-blue-600 m-3 text-white bg-blue-500 w-64 mx-auto text-center">
-      <div class="pt-3 items-center justify-between">
-        <p class="">{props.produto}</p>
-        <br></br>
-        <h2>{props.desc}</h2>
-        <h2>R${props.preco}</h2>
-        <div
-        className="items-center mx-auto space-y-2 space-x-2">
-    </div>
-    </div>
     
+
+    <div class="">
+
+    <div class="container max-w-7xl mx-auto bg-black py-4">
+  
+  <div class="flex flex-col ">
+    <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div class="inline-block w-full overflow-hidden align-middle shadow border-solid border-2 border-white sm:rounded-lg bg-white">
+        <table class="w-full table-fixed md:table-fixed ">
+          <thead>
+            <tr class="">
+              <th
+                class="w-full sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 w-32 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
+                ID</th>
+              <th
+                class="w-full sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 w-80 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
+                Nome do Produto</th>
+              <th
+                class="w-full sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 w-96 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
+                Descrição</th>
+              <th
+                class="w-full sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
+                Preço</th>
+              <th class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8  text-sm text-left text-white border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800" colspan="3">
+                Alterar e Excluir</th>
+            </tr>
+          </thead>
+
+          <tbody class="mx-auto bg-white text-gray-600 ">
+            <tr class="">
+              <td class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 w-32 whitespace-no-wrap hover:text-gray-900">
+                <div class="flex items-center">
+                {props.id}
+                </div>
+
+              </td>
+
+              <td class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 w-80 whitespace-no-wrap hover:text-gray-900">
+                <div class="text-sm leading-5">{props.produto}
+                </div>
+              </td>
+
+              <td class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 w-96 whitespace-no-wrap hover:text-gray-900">
+                <p>{props.desc}</p>
+              </td>
+
+              <td class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 text-sm leading-5 whitespace-no-wrap hover:text-gray-900">
+                <span>{props.preco}</span>
+              </td>
+
+              
+              <td class="w-full bg-white sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 text-sm font-medium leading-5 text-center whitespace-no-wrap ">
+                <a href="#" class="text-gray-700 hover:text-black">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" onClick={() => handleClickCard()} fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                </a>
+
+              
+
+              </td>
+              <td class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 bg-white text-sm font-medium leading-5 whitespace-no-wrap  ">
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-600 hover:text-red-800" onClick={() => handleClickCard()}
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg></a>
+
+              </td>
+            </tr>
+            
+
+            
+          </tbody>
+        </table>
+      </div>
     </div>
-    </div> 
+  </div>
+</div>
+</div>
+
     </>
   );
 }
+
 /*
 <div class="flex flex-row flex-wrap mx-auto w-64">
     <div className="m-3 text-black">

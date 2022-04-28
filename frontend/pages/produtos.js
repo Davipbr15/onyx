@@ -22,10 +22,19 @@ function App() {
   },[])
 
   return (
+    <div class="bg-black">
     <div className="App">
 
     <Header/>
-    
+
+    <div class="container max-w-7xl mx-auto mt-8 "> 
+    <div class="mb-4">
+    <h1 class="font-sans italic text-white hover:text- text-3xl font-bold underline decoration-indigo-900 hover:decoration-">Registros</h1>
+    <div class="flex justify-end">
+      <button class="px-4 py-2 font-serif rounded-md bg-black border border-2 border-indigo-900 text-white text-base transition ease-in-out delay-150 bg-black hover:-translate-y-1 hover:scale-110 hover:bg-indigo-900 duration-300" >Criar Registro</button>
+    </div>
+   </div>
+
     {typeof listProducts !== "undefined" && listProducts.map((value) =>{
       return (
         <Table
@@ -41,9 +50,10 @@ function App() {
       ;
     })
     }
-
+    </div>
   </div>
-  
+  </div> 
+ 
   );
 
   

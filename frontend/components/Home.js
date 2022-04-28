@@ -28,7 +28,7 @@ function Home(){
               Insira seu endereço de e-mail para receber diariamente sobre as principais ofertas do dia
             </h1>
             <input
-              placeholder="Insira seu e-mail"
+              placeholder="Insira seu e-mai"
               name="email"
               type="email"
               autoComplete="email"

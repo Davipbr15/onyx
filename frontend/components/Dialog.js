@@ -112,13 +112,13 @@ export default function FormDialog(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Cancelar
+            Cancelar.
           </Button>
           <Button color="primary" onClick={() => handleDeleteProduto()}>
-            Excluir
+            Excluir.
           </Button>
           <Button color="primary" onClick={() => handleEditProduto()}>
-            Salvar
+            Salvar.
           </Button>
         </DialogActions>
       </Dialog>

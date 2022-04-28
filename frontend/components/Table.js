@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
 import FormDialog from '../components/Dialog';
+import DialogDelete from '../components/DialogDelete';
 
 
 export default function Card(props) {
@@ -10,6 +11,10 @@ export default function Card(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickCard = () =>{
+    setOpen(true);
+  };
+
+  const handleClickCardDelete = () =>{
     setOpen(true);
   };
 
@@ -41,55 +46,55 @@ export default function Card(props) {
 
     <div class="">
 
-    <div class="container max-w-7xl mx-auto bg-black py-4">
+    <div class="container max-w-7xl mx-auto bg-black py-4 ">
   
-  <div class="flex flex-col ">
+  <div class="">
     <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-      <div class="inline-block w-full overflow-hidden align-middle shadow border-solid border-2 border-white sm:rounded-lg bg-white">
-        <table class="w-full table-fixed md:table-fixed ">
+      <div class="flex flex-col  inline-block overflow-hidden align-middle shadow border-solid border-2 border-white sm:rounded-lg bg-white">
+        <table class="w-full">
           <thead>
             <tr class="">
               <th
-                class="w-full sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 w-32 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
+                class="sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 w-32 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
                 ID</th>
               <th
-                class="w-full sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 w-80 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
+                class="sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 w-80 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
                 Nome do Produto</th>
               <th
-                class="w-full sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 w-96 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
+                class=" sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 w-96 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
                 Descrição</th>
               <th
-                class="w-full sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
+                class="sm:-mx-6 sm:px-16 lg:-mx-8 lg:px-8 text-xs font-medium leading-4 tracking-wider text-left text-white uppercase border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800">
                 Preço</th>
-              <th class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8  text-sm text-left text-white border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800" colspan="3">
+              <th class="sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 text-sm text-left text-white border-b border-gray-200 bg-indigo-900 hover:bg-indigo-800" colspan="3">
                 Alterar e Excluir</th>
             </tr>
           </thead>
 
-          <tbody class="mx-auto bg-white text-gray-600 ">
+          <tbody class="mx-auto w-full  bg-white text-gray-600 ">
             <tr class="">
-              <td class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 w-32 whitespace-no-wrap hover:text-gray-900">
+              <td class="sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 w-32 whitespace-no-wrap hover:text-gray-900">
                 <div class="flex items-center">
                 {props.id}
                 </div>
 
               </td>
 
-              <td class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 w-80 whitespace-no-wrap hover:text-gray-900">
+              <td class="sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 w-80 whitespace-no-wrap hover:text-gray-900">
                 <div class="text-sm leading-5">{props.produto}
                 </div>
               </td>
 
-              <td class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 w-96 whitespace-no-wrap hover:text-gray-900">
+              <td class="sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 w-96 whitespace-no-wrap hover:text-gray-900">
                 <p>{props.desc}</p>
               </td>
 
-              <td class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 text-sm leading-5 whitespace-no-wrap hover:text-gray-900">
+              <td class="sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 text-sm leading-5 whitespace-no-wrap hover:text-gray-900">
                 <span>{props.preco}</span>
               </td>
 
               
-              <td class="w-full bg-white sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 text-sm font-medium leading-5 text-center whitespace-no-wrap ">
+              <td class="bg-white sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 text-sm font-medium leading-5 text-center whitespace-no-wrap ">
                 <a href="#" class="text-gray-700 hover:text-black">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" onClick={() => handleClickCard()} fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -101,8 +106,8 @@ export default function Card(props) {
               
 
               </td>
-              <td class="w-full sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 bg-white text-sm font-medium leading-5 whitespace-no-wrap  ">
-                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-600 hover:text-red-800" onClick={() => handleClickCard()}
+              <td class="sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 text-sm font-medium leading-5 whitespace-no-wrap  ">
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-600 hover:text-red-800" onClick={() => handleClickCardDelete()}
                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

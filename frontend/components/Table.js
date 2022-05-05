@@ -9,13 +9,14 @@ export default function Card(props) {
   const [listProducts, setListProducts] = useState();
   
   const [open, setOpen] = React.useState(false);
+  const [openDelete, setOpenDelete] = React.useState(false);
 
   const handleClickCard = () =>{
     setOpen(true);
   };
 
   const handleClickCardDelete = () =>{
-    setOpen(true);
+    setOpenDelete(true);
   };
 
   console.log(listProducts);
@@ -35,6 +36,17 @@ export default function Card(props) {
     <FormDialog
     open={open}
     setOpen={setOpen}
+    produto={props.produto}
+    desc={props.desc}
+    preco={props.preco}
+    listCard={props.listCard}
+    setListCard={props.setListCard}
+    id={props.id}
+    />
+
+    <DialogDelete
+    open={openDelete}
+    setOpen={setOpenDelete}
     produto={props.produto}
     desc={props.desc}
     preco={props.preco}

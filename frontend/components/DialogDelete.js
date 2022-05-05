@@ -10,47 +10,10 @@ import produce from "immer";
 
 export default function DialogDelete(props) {
 
-  const [editValues, setEditValues] = useState({
-    id: props.id,
-    produto: props.produto,
-    desc: props.desc,
-    preco: props.preco,
-  });
-
-  const handleChangeValues = (values) => {
-    setEditValues((prevValues) => ({
-      ...prevValues,
-      [values.target.id]: values.target.value,
-    }));
-  };
-
-  const handleClose = () => {
-    props.setOpen(true);
-  };
-
   const [listCard,setListCard] = useState();
 
-  const handleEditProduto = () => {
-    Axios.put("http://localhost:3002/editProdutos", {
-      id: editValues.id,
-      produto: editValues.name,
-      desc_p: editValues.desc,
-      preco: editValues.preco,
-    }).then(() => {
-      props.setListCard(
-        props.listCard.map((value) => {
-          return value.id == editValues.id
-            ? {
-                id: editValues.id,
-                produto: editValues.produto,
-                desc_p: editValues.desc,
-                preco: editValues.preco,
-              }
-            : value;
-        })
-      );
-    });
-    handleClose();
+  const handleCloseDelete = () => {
+    props.setOpen(false);
   };
 
   const handleDeleteProduto = () => {
@@ -61,67 +24,65 @@ export default function DialogDelete(props) {
         })
       );
     });
-    handleClose();
+    handleCloseDelete();
   };
 
   return (
     <div>
       <Dialog
         open={props.open}
-        onClose={handleClose}
+        onClose={handleCloseDelete}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Editar</DialogTitle>
+
+        <DialogTitle id="form-dialog-title">Deletar</DialogTitle>
+
         <DialogContent>
           <TextField
-            disabled
-            margin="dense"
-            id="id"
-            label="id"
-            defaultValue={props.id}
-            type="text"
-            fullWidth
-          />
-          <TextField
-            autoFocus
             margin="dense"
             id="produto"
             label="Nome do Produto"
             defaultValue={props.produto}
             type="text"
-            onChange={handleChangeValues}
             fullWidth
+            disabled
           />
           <TextField
-            autoFocus
             margin="dense"
             id="desc"
             label="Descrição"
             defaultValue={props.desc}
             type="text"
-            onChange={handleChangeValues}
             fullWidth
+            disabled
           />
           <TextField
-            autoFocus
             margin="dense"
             id="preco"
             label="Preço"
             defaultValue={props.preco}
             type="text"
-            onChange={handleChangeValues}
             fullWidth
+            
           />
+          </DialogContent>
+          <DialogContent>
+          <a class="neon-bt mx-auto">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Você deseja realmente excluir este produto?
+          </a>
+          <br></br>
+          <cite class="text-xs">Essa ação é irreversível.</cite>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <DialogActions>
+          <Button onClick={handleCloseDelete} color="primary">
             Cancelar
           </Button>
           <Button color="primary" onClick={() => handleDeleteProduto()}>
             Excluir
-          </Button>
-          <Button color="primary" onClick={() => handleEditProduto()}>
-            Salvar
           </Button>
         </DialogActions>
       </Dialog>

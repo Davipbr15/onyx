@@ -11,6 +11,12 @@ function App() {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
 
   const handleChangeValues = (value) =>{
+
+
+    if(document.getElementById("preco").value < 0 ){
+      document.getElementById("preco").value = 0;
+    }
+    
     setValues((prevValue)=>({
       //Arrow Function, é tipo uma função, so que rápida.
       ...prevValue,
@@ -28,6 +34,8 @@ function App() {
       console.log(response);
     })
   }
+  
+  console.log(handleChangeValues);
 
   const handlePageOpen = () =>{
     
@@ -75,8 +83,11 @@ function App() {
           <div>
 						<label htmlFor="preco" className="sr-only">Preço do Produto</label>
 						<input id="preco"
-            type="text"
+            type="number"
             name="preco"
+            min="0"
+            max="99999"
+            defaultValue="0"
             onChange={handleChangeValues}
             required
             className="p-8 border border-2 border-indigo-700 appearance-none rounded-t-md rounded-b-md relative block w-full px-3 py-2 border border-indigo-500 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-600 focus:z-10 sm:text-sm"

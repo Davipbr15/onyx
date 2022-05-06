@@ -38,7 +38,7 @@ export default function DialogDelete(props) {
         <DialogTitle id="form-dialog-title">Deletar</DialogTitle>
 
         <DialogContent>
-          <TextField
+          <TextField sx={{ border: 0 }}
             margin="dense"
             id="produto"
             label="Nome do Produto"

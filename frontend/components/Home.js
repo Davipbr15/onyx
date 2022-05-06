@@ -4,7 +4,7 @@ function Home(){
 
     return(
     <>
-    <div class="bg-black">
+    <div className="bg-black">
       <div className="grr max-w-7xl pt-20 mx-auto text-center">
         <h1 className="mb-8 text-6xl Avenir font-semibold text-white">
           Compre no conforto da sua casa

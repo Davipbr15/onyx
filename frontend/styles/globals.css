@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.completo{
+  min-height: 100vh;
+}
+
 .placeholder--center::placeholder{
   text-align:center;
 }

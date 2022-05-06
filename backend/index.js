@@ -31,7 +31,7 @@ app.post("/registrarProduto", (req,res) =>{
 })
 
 app.get("/getProdutos", (req,res) =>{
-    let SQL = "SELECT * from produto ORDER BY 'id' ";
+    let SQL = "SELECT * from produto ORDER BY id DESC";
 
     db.query(SQL,(err,result) =>{
         if(err) console.log(err)

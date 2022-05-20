@@ -12,7 +12,6 @@ function App() {
 
   const handleChangeValues = (value) =>{
 
-
     if(document.getElementById("preco").value < 0 ){
       document.getElementById("preco").value = 0;
     }
@@ -22,18 +21,37 @@ function App() {
       ...prevValue,
       [value.target.name]: value.target.value,
   }));
+
 }
 
-  const handleClickButton = () =>{
-    Axios.post("http://localhost:3002/registrarProduto",{
-      produto: values.produto,
-      desc: values.desc,
-      preco: values.preco,
-      
-    }).then((response)=>{
-      console.log(response);
-    })
+    var selecao = () =>{
+    var valor = document.querySelector("produtoNome").value;
+    console.log(valor);
   }
+
+
+
+    const handleClickButton = () =>{
+      selecao();
+      if(valor == null ||
+      document.getElementById("desc") == null ||
+      document.getElementById("preco")  == null){
+
+        alert("Informações Inválidas");
+
+
+      } else {
+
+    Axios.post("http://localhost:3002/registrarProduto",{
+    produto: values.produtoNome,
+    desc: values.desc,
+    preco: values.preco,
+    
+  }).then((response)=>{
+    console.log(response);
+  })
+}
+}
   
   console.log(handleChangeValues);
 
@@ -44,7 +62,7 @@ function App() {
 
 
   return (
-    <div class="bg-black">
+    <div className="bg-black">
     <div className="App">
     <br></br>
     <br></br>
@@ -67,9 +85,9 @@ function App() {
 			</div>
 			<form className="mt-8 space-y-6" action="#" method="POST">
 				<input type="hidden" name="remember" value="True"/>
-				<div className="rounded-md shadow-sm -space-y-px p-5">
+				<div className="rounded-md shadow-sm -space-y-px p-5 ">
 					<div>
-						<label htmlFor="nomeprod" className="sr-only">Nome do produto</label>
+          {/* <label htmlFor="nomeprod" className="sr-only">Nome do produto</label>
 						<input id="nomeprod"
         type="text"
         name="produto"
@@ -77,7 +95,22 @@ function App() {
         onChange={handleChangeValues}
         required
         className="p-8  border border-2 border-indigo-700 appearance-none rounded-none relative block w-full px-3 py-2 border border-indigo-500 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-00 focus:z-10 sm:text-sm"
-        />
+        /> */}
+
+        <div class="text-center rounded-t-md rounded-b-md">
+        <select class="w-36 h-8 text-center text-gray-600 rounded-t-md rounded-b-md border border-2 border-indigo-500 focus:ring-indigo-500 focus:border-indigo-600 focus:z-10 sm:text-sm" id="produto" name="produto">
+          <option value="" disabled selected> Selecione Produto</option>
+          <option value="teclado">Teclado</option>
+          <option value="mouse">Mouse</option>
+          
+          <option value="headset">Headset</option>
+          <option value="monitor">Monitor</option>
+          <option value="microfone">Microfone</option>
+        </select>
+        </div>
+
+        
+
 					</div>
           <br></br>
           <div>

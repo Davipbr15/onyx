@@ -30,6 +30,27 @@ app.post("/registrarProduto", (req,res) =>{
     })
 })
 
+app.post("/registraConta", (req,res) =>{
+  const { nome } = req.body;
+  const { email } = req.body;
+  const { senha } = req.body;
+  
+
+  let SQL = "INSERT INTO login (email,senha,nome) VALUES (?,?,?)"
+
+  db.query(SQL, [nome,email,senha] ,(err,result) =>{
+      console.log(err);
+  })
+})
+
+app.post("/logarConta", (req,res) =>{
+  let SQL = "SELECT * from produto ORDER BY id DESC";
+  db.query(SQL,(err,result) =>{
+      if(err) console.log(err)
+      else res.send(result);
+  })
+})
+
 app.get("/getProdutos", (req,res) =>{
     let SQL = "SELECT * from produto ORDER BY id DESC";
 

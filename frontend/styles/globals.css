@@ -19,6 +19,10 @@
   text-align: center;
 }
 
+select:invalid {
+  color: gray;
+}
+
 /*estilo do botão*/
 
 
@@ -142,5 +146,29 @@
   }
 
 }
+
+.section{
+  display: table;
+  background-image: linear-gradient(rgba(0,10,70,0.5),rgba(255,255,255,0.2)),url(../img/section.jpg);
+  min-height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.section h1{
+  color: white;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 700;
+  text-decoration-color: white;
+  text-shadow: 0px 0px 10px black;
+}
+
+
+
 
  

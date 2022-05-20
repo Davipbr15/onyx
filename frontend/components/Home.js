@@ -1,22 +1,28 @@
 import React from 'react';
+import Image from 'next/image';
+import pc from '../img/teste.jpg';
 
 function Home(){
 
     return(
     <>
     <div className="bg-black">
-      <div className="grr max-w-7xl pt-20 mx-auto text-center">
-        <h1 className="mb-8 text-6xl Avenir font-semibold text-white">
-          Compre no conforto da sua casa
-        </h1>
-        <h1 className="mb-8 text-2xl Avenir font-semibold text-white text-center">
-          A plataforma ONYX está disponível para PC, Android e IOS.
-        </h1>
+      <div class="section">
+      <h1 className="text-6xl font-semibold text-white">
+                         Compre na Onyx e aproveite
+                            <br></br>
+      O melhor site de vendas on-line,com os melhores eletrônicos que você pode encontrar.
+                   
+   
+      </h1>
+      </div>
 
-        <div className="flex flex-row items-center justify-center mx-auto mb-8 gap-5">
-        <a href="#" tabIndex="0"><img class="w-60" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"alt="bn45"/></a>
-        <a href="#" tabIndex="0"><img class="w-64" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png" alt="bn45"/></a>
-        </div>
+        
+
+      <div className="grr max-w-7xl pt-20 mx-auto text-center">
+        
+
+ 
       </div>
       <section className="relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">

@@ -77,12 +77,13 @@ function Header(){
                         </a>
                         </Link>
                       </li>
+                      <Link href="/logar">
                       <li>
                         <a
                           className="inline-flex items-center px-4 py-2 mt-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent rounded-lg text-md md:mt-0 md:ml-4 bg-indigo-900"
                           href="/"
                         >
-                          <span className="justify-center">Download</span>
+                          <span className="justify-center">Login</span>
                           <svg
                             className="w-3 h-3 fill-current text-gray-400 flex ml-2 -mr-1"
                             viewBox="0 0 12 12"
@@ -95,6 +96,7 @@ function Header(){
                           </svg>
                         </a>
                       </li>
+                      </Link>
                     </ul>
                   </nav>
                 </div>

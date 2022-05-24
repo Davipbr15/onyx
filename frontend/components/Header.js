@@ -12,7 +12,7 @@ function Header(){
                     className="text-lg font-semibold rounded-lg tracking-widest focus:outline-none focus:shadow-outline"
                   >
                     <h1 className="text-4xl Avenir tracking-tighter text-white md:text-4x1 lg:text-3xl">
-                      ONYX
+                      Onyx
                     </h1>
                   </a>
                   <button

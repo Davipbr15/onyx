@@ -97,8 +97,8 @@ function App() {
         className="p-8  border border-2 border-indigo-700 appearance-none rounded-none relative block w-full px-3 py-2 border border-indigo-500 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-00 focus:z-10 sm:text-sm"
         /> */}
 
-        <div class="text-center rounded-t-md rounded-b-md">
-        <select class="w-36 h-8 text-center text-gray-600 rounded-t-md rounded-b-md border border-2 border-indigo-500 focus:ring-indigo-500 focus:border-indigo-600 focus:z-10 sm:text-sm" id="produto" name="produto">
+        <div className="text-center rounded-t-md rounded-b-md">
+        <select className="w-36 h-8 text-center text-gray-600 rounded-t-md rounded-b-md border border-2 border-indigo-500 focus:ring-indigo-500 focus:border-indigo-600 focus:z-10 sm:text-sm" id="produto" name="produto">
           <option value="" disabled selected> Selecione Produto</option>
           <option value="teclado">Teclado</option>
           <option value="mouse">Mouse</option>

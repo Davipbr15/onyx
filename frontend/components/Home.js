@@ -7,7 +7,7 @@ function Home(){
     return(
     <>
     <div className="bg-black">
-      <div class="section">
+      <div className="section">
       <h1 className="text-6xl font-semibold text-white">
                          Compre na Onyx e aproveite
                             <br></br>

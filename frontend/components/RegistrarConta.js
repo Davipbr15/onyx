@@ -36,7 +36,7 @@ function RegistrarConta(){
 
     return(
     <>
-    <div class="bg-black">
+    <div className="bg-black">
     <div className="App">
     <br></br>
     <br></br>

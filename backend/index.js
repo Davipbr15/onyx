@@ -61,26 +61,41 @@ app.post("/login", (req, res) => {
   const password = req.body.password;
 
   db.query("SELECT * FROM usuarios WHERE logEmail = ?", [email], (err, result) => {
-    var resultado = (result);
-    res.send(resultado);
+
     if (err) {
+
       res.send(err);
+
     }
+
     if (result.length > 0) {
-      bcrypt.compare(password, result[0].password, (error, response) => {
-        if (error) {
-          res.send(error);
-        }
-        if (response) {
-          res.send({ msg: "Usuário logado" });
-        } else {
-          res.send({ msg: "Senha incorreta" });
-        }
+
+      bcrypt.hash(password, saltRounds, (err, hash) => {
+  
+        bcrypt.compare(password, result[0].password, (error, response) => {
+
+          console.log(response);
+  
+        //
+          if (error) {
+            res.send(error);
+          }
+          if (response) {
+            res.send({ msg: "Usuário logado" });
+          } else {
+            res.send({ msg: "Senha incorreta" });
+          }
+        });
+      } else {
+        res.send({ msg: "Usuário não registrado!" });
+      }
+    });
+
+        
       });
-    } else {
-      res.send({ msg: "Usuário não registrado!" });
+      //
     }
-  });
+
 });
 
 
@@ -95,6 +110,7 @@ app.post("/register", (req, res) => {
       res.send(err);
     }
     if (result.length == 0) {
+      
       bcrypt.hash(password, saltRounds, (err, hash) => {
         db.query(
           "INSERT INTO usuarios (logEmail, password) VALUE (?,?)",

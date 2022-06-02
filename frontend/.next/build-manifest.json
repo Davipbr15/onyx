@@ -25,15 +25,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/logar": [
+    "/produtos": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/logar.js"
+      "static/chunks/pages/produtos.js"
     ],
-    "/registrarConta": [
+    "/registrar": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/registrarConta.js"
+      "static/chunks/pages/registrar.js"
     ]
   },
   "ampFirstPages": []

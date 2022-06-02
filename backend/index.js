@@ -10,7 +10,7 @@ const db = mysql.createPool({
     user:"root",
     password:"",
     database:"dataonyx",
-})
+});
 
 
 app.use(cors());
@@ -29,7 +29,7 @@ app.post("/registrarProduto", (req,res) =>{
     db.query(SQL, [produto,desc,precoN] ,(err,result) =>{
         console.log(err);
     })
-})
+});
 
 app.post("/registrarConta", (req,res) =>{
   
@@ -42,7 +42,7 @@ app.post("/registrarConta", (req,res) =>{
   db.query(SQL, [nome,email,senha] ,(err,result) =>{
       console.log(err);
   })
-})
+});
 app.post("/logarConta", (req,res) =>{
 
   const { email } = req.body;
@@ -54,7 +54,36 @@ app.post("/logarConta", (req,res) =>{
       if(err) console.log(err)
       else res.send(result);
   })
-})
+});
+
+app.post("/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  db.query("SELECT * FROM usuarios WHERE logEmail = ?", [email], (err, result) => {
+    var resultado = (result);
+    res.send(resultado);
+    if (err) {
+      res.send(err);
+    }
+    if (result.length > 0) {
+      bcrypt.compare(password, result[0].password, (error, response) => {
+        if (error) {
+          res.send(error);
+        }
+        if (response) {
+          res.send({ msg: "Usuário logado" });
+        } else {
+          res.send({ msg: "Senha incorreta" });
+        }
+      });
+    } else {
+      res.send({ msg: "Usuário não registrado!" });
+    }
+  });
+});
+
+
 
 app.post("/register", (req, res) => {
   const email = req.body.email;
@@ -68,7 +97,7 @@ app.post("/register", (req, res) => {
     if (result.length == 0) {
       bcrypt.hash(password, saltRounds, (err, hash) => {
         db.query(
-          "INSERT INTO usuarios (logEmail, logSenha) VALUE (?,?)",
+          "INSERT INTO usuarios (logEmail, password) VALUE (?,?)",
           [email, hash],
           (error, response) => {
             if (err) {
@@ -85,38 +114,6 @@ app.post("/register", (req, res) => {
   });
 });
 
-app.post("/login", (req, res) => {
-  const email = req.body.email;
-  const logSenha = req.body.password;
-
-  db.query("SELECT * FROM usuarios WHERE logEmail = ?", [email], (err, result) => {
-    if (err) {
-      res.send(err);
-    }
-    if (result.length > 0) {
-      bcrypt.compare(logSenha, result[0].logSenha, (error, response) => {
-
-
-        if (error) {
-          res.send(error);
-          return;
-        }
-
-        if (response) {
-          console.log('f');
-          res.send({ msg: "Usuário logado" });
-        } else {
-          console.log('g');
-          res.send({ msg: "Senha incorreta" });
-        }
-      });
-    } else {
-      console.log('h');
-      res.send({ msg: "Usuário não registrado!" });
-    }
-    return;
-  });
-});
 
 app.get("/getProdutos", (req,res) =>{
     let SQL = "SELECT * from produto ORDER BY id DESC";
@@ -125,7 +122,7 @@ app.get("/getProdutos", (req,res) =>{
         if(err) console.log(err)
         else res.send(result);
     })
-})
+});
 
 app.put("/editProdutos", (req,res) =>{
     const { id } = req.body;
@@ -140,7 +137,7 @@ app.put("/editProdutos", (req,res) =>{
         res.send(result);
       }
     });
-})
+});
 
 app.delete("/deleteProduto/:id", (req, res) => {
     const { id } = req.params;

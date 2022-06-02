@@ -1,8 +1,14 @@
-import React,{useState} from 'react';
+import React, { Component,useState } from 'react'
+import Select from 'react-select'
 import Axios from "axios";
 import Header from "../components/Header.js";
 import "tailwindcss/tailwind.css";
 
+const options = [
+  { value: 'monitor', label: 'Monitor' },
+  { value: 'mouse', label: 'Mouse' },
+  { value: 'teclado', label: 'Teclado' }
+]
 
 function App() {
 
@@ -24,34 +30,21 @@ function App() {
 
 }
 
-    var selecao = () =>{
-    var valor = document.querySelector("produtoNome").value;
-    console.log(valor);
-  }
-
-
-
     const handleClickButton = () =>{
-      selecao();
-      if(valor == null ||
-      document.getElementById("desc") == null ||
-      document.getElementById("preco")  == null){
-
-        alert("Informações Inválidas");
-
-
-      } else {
 
     Axios.post("http://localhost:3002/registrarProduto",{
-    produto: values.produtoNome,
+    produto: values.produto,
     desc: values.desc,
     preco: values.preco,
     
   }).then((response)=>{
     console.log(response);
   })
+
 }
-}
+
+
+
   
   console.log(handleChangeValues);
 
@@ -59,6 +52,10 @@ function App() {
     
   }
   
+
+  const MyComponent = () => (
+    <Select options={options} />
+  )
 
 
   return (
@@ -87,7 +84,7 @@ function App() {
 				<input type="hidden" name="remember" value="True"/>
 				<div className="rounded-md shadow-sm -space-y-px p-5 ">
 					<div>
-          {/* <label htmlFor="nomeprod" className="sr-only">Nome do produto</label>
+           <label htmlFor="nomeprod" className="sr-only">Nome do produto</label>
 						<input id="nomeprod"
         type="text"
         name="produto"
@@ -95,21 +92,9 @@ function App() {
         onChange={handleChangeValues}
         required
         className="p-8  border border-2 border-indigo-700 appearance-none rounded-none relative block w-full px-3 py-2 border border-indigo-500 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-00 focus:z-10 sm:text-sm"
-        /> */}
+        /> 
 
-        <div className="text-center rounded-t-md rounded-b-md">
-        <select className="w-36 h-8 text-center text-gray-600 rounded-t-md rounded-b-md border border-2 border-indigo-500 focus:ring-indigo-500 focus:border-indigo-600 focus:z-10 sm:text-sm" id="produto" name="produto">
-          <option value="" disabled selected> Selecione Produto</option>
-          <option value="teclado">Teclado</option>
-          <option value="mouse">Mouse</option>
-          
-          <option value="headset">Headset</option>
-          <option value="monitor">Monitor</option>
-          <option value="microfone">Microfone</option>
-        </select>
-        </div>
-
-        
+        {MyComponent()}
 
 					</div>
           <br></br>
@@ -117,7 +102,7 @@ function App() {
 						<label htmlFor="preco" className="sr-only">Preço do Produto</label>
 						<input id="preco"
             type="number"
-            name="preco"
+            name="preco"  
             min="0"
             max="99999"
             defaultValue="0"

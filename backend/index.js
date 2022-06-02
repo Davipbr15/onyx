@@ -2,7 +2,8 @@ const express = require("express");
 const app = (express());
 const mysql = require("mysql2");
 const cors = require("cors");
-const name = "davi";
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 const db = mysql.createPool({
     host:"127.0.0.1",
@@ -12,9 +13,9 @@ const db = mysql.createPool({
 })
 
 
-
 app.use(cors());
 app.use(express.json());
+
 
 app.post("/registrarProduto", (req,res) =>{
     const { produto } = req.body;
@@ -30,26 +31,92 @@ app.post("/registrarProduto", (req,res) =>{
     })
 })
 
-app.post("/registraConta", (req,res) =>{
+app.post("/registrarConta", (req,res) =>{
+  
   const { nome } = req.body;
   const { email } = req.body;
   const { senha } = req.body;
   
-
-  let SQL = "INSERT INTO login (email,senha,nome) VALUES (?,?,?)"
+  let SQL = "INSERT INTO usuarios (nome,logEmail,logSenha) VALUES (?,?,?)"
 
   db.query(SQL, [nome,email,senha] ,(err,result) =>{
       console.log(err);
   })
 })
-
 app.post("/logarConta", (req,res) =>{
-  let SQL = "SELECT * from produto ORDER BY id DESC";
-  db.query(SQL,(err,result) =>{
+
+  const { email } = req.body;
+  const { senha } = req.body;
+
+  let SQL = "SELECT logEmail, logSenha FROM produto WHERE logEmail='?' AND logSenha='?' VALUES (?,?) ";
+
+  db.query(SQL,[email,senha]  ,(err,result) =>{
       if(err) console.log(err)
       else res.send(result);
   })
 })
+
+app.post("/register", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  db.query("SELECT * FROM usuarios WHERE logEmail = ?", [email], (err, result) => {
+
+    if (err) {
+      res.send(err);
+    }
+    if (result.length == 0) {
+      bcrypt.hash(password, saltRounds, (err, hash) => {
+        db.query(
+          "INSERT INTO usuarios (logEmail, logSenha) VALUE (?,?)",
+          [email, hash],
+          (error, response) => {
+            if (err) {
+              res.send(err);
+            }
+
+            res.send({ msg: "Usuário cadastrado com sucesso" });
+          }
+        );
+      });
+    } else {
+      res.send({ msg: "Email já cadastrado" });
+    }
+  });
+});
+
+app.post("/login", (req, res) => {
+  const email = req.body.email;
+  const logSenha = req.body.password;
+
+  db.query("SELECT * FROM usuarios WHERE logEmail = ?", [email], (err, result) => {
+    if (err) {
+      res.send(err);
+    }
+    if (result.length > 0) {
+      bcrypt.compare(logSenha, result[0].logSenha, (error, response) => {
+
+
+        if (error) {
+          res.send(error);
+          return;
+        }
+
+        if (response) {
+          console.log('f');
+          res.send({ msg: "Usuário logado" });
+        } else {
+          console.log('g');
+          res.send({ msg: "Senha incorreta" });
+        }
+      });
+    } else {
+      console.log('h');
+      res.send({ msg: "Usuário não registrado!" });
+    }
+    return;
+  });
+});
 
 app.get("/getProdutos", (req,res) =>{
     let SQL = "SELECT * from produto ORDER BY id DESC";

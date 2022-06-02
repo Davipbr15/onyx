@@ -1,19 +1,19 @@
 import React,{useState,useEffect} from 'react';
 import Header from "../components/Header.js";
-import RegistrarConta from "../components/RegistrarConta.js";
+import Registro from "../components/RegistrarConta.js";
+import Table from "../components/Table.js";
 import "tailwindcss/tailwind.css";
-import Link from 'next/link';
+import Link from "next/link";
 
 
-
+//
 function App() {
 
   return (
     <div className="App">
 
-    <Header/>
-    
-    <RegistrarConta />
+    <Header />
+    <Registro/>
 
     </div>
   );

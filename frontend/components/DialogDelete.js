@@ -16,6 +16,13 @@ export default function DialogDelete(props) {
     props.setOpen(false);
   };
 
+  const [editValues, setEditValues] = useState({
+    id: props.id,
+    produto: props.produto,
+    desc: props.desc,
+    preco: props.preco,
+  });
+
   const handleDeleteProduto = () => {
     Axios.delete(`http://localhost:3002/deleteProduto/${editValues.id}`).then(() => {
       props.setListCard(
@@ -63,7 +70,7 @@ export default function DialogDelete(props) {
             defaultValue={props.preco}
             type="text"
             fullWidth
-            
+            disabled
           />
           </DialogContent>
           <DialogContent>

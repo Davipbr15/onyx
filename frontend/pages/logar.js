@@ -1,20 +1,17 @@
 import React,{useState,useEffect} from 'react';
 import Header from "../components/Header.js";
-import Login from "../components/LogarConta.js";
-import "tailwindcss/tailwind.css";
-import Link from 'next/link';
+import LogarConta from "../components/LoginConta.js";
 
 
+//
 function App() {
 
   return (
-    <div className="App bg-black h-screen">
+    <div className="App">
 
-    <Header/>
+    <Header />
     
-    <Login/>
-
-    <cite className="text-white">Não tem sua conta ainda? Registre-se <Link href="registrarConta">aqui</Link></cite>
+    <LogarConta />
 
     </div>
   );

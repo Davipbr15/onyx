@@ -69,13 +69,30 @@ app.post("/login", (req, res) => {
     }
 
     if (result.length > 0) {
-
-      bcrypt.hash(password, saltRounds, (err, hash) => {
   
-        bcrypt.compare(password, result[0].password, (error, response) => {
+      //
+      
+      bcrypt.hash(password, saltRounds, (err, hash) =>{
 
-          console.log(response);
-  
+        bcrypt.compare(password, hash).then(function(result) {
+
+          console.log("Valor do resultado do DB2:  " +  result[0].password);
+
+          console.log("Valor da senha2:  " + password);
+
+          console.log("Valor do Hash2:  " + hash)
+
+          // result == true
+      });
+
+        bcrypt.compare(password, result[0].password , (error, response) => {
+
+          console.log("Valor do resultado do DB  " +  result[0].password);
+
+          console.log("Valor da senha  " + password);
+
+          console.log("Valor do Hash  " + hash)
+
         //
           if (error) {
             res.send(error);
@@ -86,18 +103,14 @@ app.post("/login", (req, res) => {
             res.send({ msg: "Senha incorreta" });
           }
         });
-      } else {
-        res.send({ msg: "Usuário não registrado!" });
-      }
-    });
+      })
 
-        
-      });
-      //
+      
+    } else {
+      res.send({ msg: "Usuário não registrado!" });
     }
-
+  });
 });
-
 
 
 app.post("/register", (req, res) => {
@@ -110,8 +123,10 @@ app.post("/register", (req, res) => {
       res.send(err);
     }
     if (result.length == 0) {
-      
-      bcrypt.hash(password, saltRounds, (err, hash) => {
+
+      bcrypt.hash(password, saltRounds).then(function(hash) {
+        // Store hash in your password DB.
+
         db.query(
           "INSERT INTO usuarios (logEmail, password) VALUE (?,?)",
           [email, hash],
@@ -123,7 +138,9 @@ app.post("/register", (req, res) => {
             res.send({ msg: "Usuário cadastrado com sucesso" });
           }
         );
-      });
+
+    });
+
     } else {
       res.send({ msg: "Email já cadastrado" });
     }

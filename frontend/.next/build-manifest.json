@@ -39,6 +39,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/registrar.js"
+    ],
+    "/registrarConta": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/registrarConta.js"
     ]
   },
   "ampFirstPages": []

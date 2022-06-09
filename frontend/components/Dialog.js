@@ -7,8 +7,20 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Axios from "axios";
 import produce from "immer";
+import $ from 'jquery';
 
 export default function FormDialog(props) {
+
+  if (typeof window === 'object') {
+    
+    $(document).ready(function() {
+      $("#preco").keyup(function() {
+          $("#preco").val(this.value.match(/[0-9]*/));
+      });
+    });
+
+    }
+
 
   const [editValues, setEditValues] = useState({
     id: props.id,
@@ -33,7 +45,7 @@ export default function FormDialog(props) {
   const handleEditProduto = () => {
     Axios.put("http://localhost:3002/editProdutos", {
       id: editValues.id,
-      produto: editValues.name,
+      produto: editValues.produto,
       desc_p: editValues.desc,
       preco: editValues.preco,
     }).then(() => {
@@ -103,12 +115,18 @@ export default function FormDialog(props) {
             fullWidth
           />
           <TextField
+            type="text"
+            name="preco"  
+            min="0"
+            max="9999"
+            placeholder="Preço"
             autoFocus
             margin="dense"
             id="preco"
             label="Preço"
+            maxLength="5"
+            pattern="[0-9\.]+"
             defaultValue={props.preco}
-            type="text"
             onChange={handleChangeValues}
             fullWidth
           />

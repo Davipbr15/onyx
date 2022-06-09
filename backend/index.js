@@ -42,21 +42,22 @@ app.post("/registrarConta", (req,res) =>{
   db.query(SQL, [nome,email,senha] ,(err,result) =>{
       console.log(err);
   })
+
 });
 app.post("/logarConta", (req,res) =>{
 
-  const { email } = req.body;
-  const { senha } = req.body;
+  const email = req.body.email;
+  const password = req.body.password;
+  let SQL = "SELECT logEmail, password FROM usuarios WHERE logEmail=? AND password=?"
 
-  let SQL = "SELECT logEmail, logSenha FROM produto WHERE logEmail='?' AND logSenha='?' VALUES (?,?) ";
-
-  db.query(SQL,[email,senha]  ,(err,result) =>{
+  db.query(SQL,[email,password],(err,result) =>{
       if(err) console.log(err)
       else res.send(result);
   })
 });
 
 app.post("/login", (req, res) => {
+
   const email = req.body.email;
   const password = req.body.password;
 
@@ -68,52 +69,28 @@ app.post("/login", (req, res) => {
 
     }
 
-    if (result.length > 0) {
-  
-      //
-      
-      bcrypt.hash(password, saltRounds, (err, hash) =>{
+      if(result[0].password == password){
 
-        bcrypt.compare(password, hash).then(function(result) {
+        res.send("aaa");
+          console.log(password);
+          console.log(result[0].password)
 
-          console.log("Valor do resultado do DB2:  " +  result[0].password);
+         
 
-          console.log("Valor da senha2:  " + password);
+      } else{
+        res.send("Senha e/ou E-mail Inválido.");
+      }
 
-          console.log("Valor do Hash2:  " + hash)
 
-          // result == true
       });
-
-        bcrypt.compare(password, result[0].password , (error, response) => {
-
-          console.log("Valor do resultado do DB  " +  result[0].password);
-
-          console.log("Valor da senha  " + password);
-
-          console.log("Valor do Hash  " + hash)
-
-        //
-          if (error) {
-            res.send(error);
-          }
-          if (response) {
-            res.send({ msg: "Usuário logado" });
-          } else {
-            res.send({ msg: "Senha incorreta" });
-          }
-        });
-      })
-
-      
-    } else {
-      res.send({ msg: "Usuário não registrado!" });
-    }
-  });
+    
 });
 
 
 app.post("/register", (req, res) => {
+
+   
+  const { nome } = req.body;
   const email = req.body.email;
   const password = req.body.password;
 
@@ -124,22 +101,12 @@ app.post("/register", (req, res) => {
     }
     if (result.length == 0) {
 
-      bcrypt.hash(password, saltRounds).then(function(hash) {
-        // Store hash in your password DB.
+      let SQL = "INSERT INTO usuarios (nome,logEmail,password) VALUES (?,?,?)"
 
-        db.query(
-          "INSERT INTO usuarios (logEmail, password) VALUE (?,?)",
-          [email, hash],
-          (error, response) => {
-            if (err) {
-              res.send(err);
-            }
+      db.query(SQL, [nome,email,password] ,(err,result) =>{
+          console.log(err);
+      });
 
-            res.send({ msg: "Usuário cadastrado com sucesso" });
-          }
-        );
-
-    });
 
     } else {
       res.send({ msg: "Email já cadastrado" });
@@ -160,10 +127,10 @@ app.get("/getProdutos", (req,res) =>{
 app.put("/editProdutos", (req,res) =>{
     const { id } = req.body;
     const { produto } = req.body;
-    const { desc } = req.body;
+    const { desc_p } = req.body;
     const { preco } = req.body;
     let SQL = "UPDATE produto SET produto = ?, desc_p = ?, preco = ? WHERE id = ?";
-    db.query(SQL, [produto, desc, preco, id], (err, result) => {
+    db.query(SQL, [produto, desc_p, preco, id], (err, result) => {
       if (err) {
         res.send(err);
       } else {

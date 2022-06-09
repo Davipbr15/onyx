@@ -7,11 +7,11 @@ import Axios from "axios";
 
 function App() {
   const handleLogin = (values) => {
-    Axios.post("http://localhost:3002/login", {
+    Axios.post("http://localhost:3002/logarConta", {
       email: values.email,
       password: values.password,
-    }).then((response) => {
-      alert(response.data.msg);
+    }).then((res) => {
+      alert(res.data.msg);
     });
   };
 

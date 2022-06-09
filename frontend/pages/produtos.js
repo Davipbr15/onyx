@@ -23,14 +23,13 @@ function App() {
   },[])
 
   return (
-    <div className="bg-black completo">
+    <div className="bg-black h-screen">
     <div className="App bg-black">
 
     <Header/>
-
-    <div className="container max-w-7xl mx-auto mt-8 "> 
+    <div className="container px-8 py-32 bg-black max-w-7xl mx-auto mt-8"> 
     <div className="mb-4">
-    <h1 className="font-sans italic text-white hover:text- text-3xl font-bold underline decoration-indigo-900 hover:decoration-">Registros</h1>
+    <h1 className="font-sans italic text-white text-3xl font-bold underline decoration-indigo-900 hover:decoration-">Registros</h1>
     <div className="flex justify-end">
     <Link href="/registrar">
       <button className="px-4 py-2 rounded-md bg-black border border-2 border-indigo-900 text-white text-base transition ease-in-out delay-150 bg-black hover:-translate-y-1 hover:scale-110 hover:bg-indigo-900 duration-300" href="/">Criar Registro</button>

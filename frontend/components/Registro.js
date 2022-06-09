@@ -78,7 +78,7 @@ function App() {
     <br></br>
     <br></br>
 
-    <div className="min-h-full flex items-center justify-center pt-16 pb-40 bg-gray-40 sm:px-6 lg:px-8">
+    <div className="min-h-full flex items-center justify-center pt-28 bg-gray-40 sm:px-6 lg:px-8">
       
 		<div className="bg-black max-w-md w-full space-y-8 rounded-2xl p-8 border-4 border-roxo">
 			<div>

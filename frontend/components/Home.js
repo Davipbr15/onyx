@@ -97,13 +97,14 @@ function Home(){
             </input>{" "}
       
               <a
-              className="inline-flex items-center px-14 py-3 mt-2 ml-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-t-md rounded-b-md bg-indigo-900"
+              className="inline-flex items-center px-14 py-3 mt-2 ml-2 font-medium text-white transition duration-500 ease-in-out transform bg-transparent border rounded-t-md rounded-b-md bg-roxo"
               href="/"
               >
               <span className="justify-center">Assinar</span>
             </a>
+
            
-        <h1 className="mb-7 text-2xl Avenir font-semibold text-white text-center">
+        <h1 className="mb-7 p-5 text-2xl Avenir font-semibold text-white text-center">
           A plataforma ONYX está disponível para PC, Android e IOS.
         </h1>
 

@@ -2,6 +2,8 @@ import React, { Component,useState } from 'react'
 import Select from 'react-select'
 import Axios from "axios";
 import Header from "../components/Header.js";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 import "tailwindcss/tailwind.css";
 import $ from 'jquery';
 
@@ -22,7 +24,6 @@ function App() {
     });
 
     }
-  
 
 
   const [values, setValues] = useState();
@@ -45,19 +46,19 @@ function App() {
 
     const handleClickButton = () =>{
 
+
     Axios.post("http://localhost:3002/registrarProduto",{
-    produto: values.produto,
-    desc: values.desc,
-    preco: values.preco,
+      produto: values.produto,
+      desc: values.desc,
+      preco: values.preco,
+      
+    }).then((response)=>{
+      console.log(response);
+    })
     
-  }).then((response)=>{
-    console.log(response);
-  })
+
 
 }
-
-
-
   
   console.log(handleChangeValues);
 
@@ -69,7 +70,6 @@ function App() {
   const MyComponent = () => (
     <Select options={options} />
   )
-
 
   return (
     <div className="bg-black h-screen">
@@ -97,19 +97,35 @@ function App() {
 				<input type="hidden" name="remember" value="True"/>
 				<div className="rounded-md shadow-sm -space-y-px p-5 ">
 					<div>
-           <label htmlFor="nomeprod" className="sr-only">Nome do produto</label>
-						<input id="nomeprod"
+        <small className="italic text-gray-600">Nome do Produto</small>
+        <input id="nomeprod"
         type="text"
         name="produto"
         placeholder="Nome do Produto"
         onChange={handleChangeValues}
         required
         className="p-8  border border-2 border-roxo appearance-none rounded-none relative block w-full px-3 py-2 border border-roxo placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-roxo focus:border-roxo sm:text-sm"
-        /> 
+        />
+
+
 
 					</div>
+					<div>
           <br></br>
+          <small className="italic text-gray-600">Descrição do Produto</small>
+						<label htmlFor="descricao" className="sr-only">Descrição</label>
+						<textarea id="descricao"
+            required
+            className="min p-8 border border-2 appearance-none rounded-t-md rounded-b-md relative block w-full px-3 py-2 border border-roxo placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-roxo focus:border-roxo focus:z-10 sm:text-sm"
+            placeholder="Descrição"
+            type="text-area"
+            name="desc"
+            onChange={handleChangeValues}
+            />
+					</div>
           <div>
+          <br></br>
+          <small className="italic text-gray-600">Preço do Produto</small>
 						<label htmlFor="preco" className="sr-only">Preço do Produto</label>
 						<input id="preco"
             type="text"
@@ -123,18 +139,6 @@ function App() {
             className="p-8 border border-2 border-roxo appearance-none rounded-t-md rounded-b-md relative block w-full px-3 py-2 border border-roxo placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-roxo focus:border-roxo focus:z-10 sm:text-sm"
             placeholder="Preço"/>
 			  	</div>
-          <br></br>
-					<div>
-						<label htmlFor="descricao" className="sr-only">Descrição</label>
-						<textarea id="descricao"
-            required
-            className="min p-8 border border-2 appearance-none rounded-t-md rounded-b-md relative block w-full px-3 py-2 border border-roxo placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-roxo focus:border-roxo focus:z-10 sm:text-sm"
-            placeholder="Descrição"
-            type="text-area"
-            name="desc"
-            onChange={handleChangeValues}
-            />
-					</div>
 				</div>
 
 				<div>

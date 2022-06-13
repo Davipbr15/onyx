@@ -74,7 +74,7 @@ export default function DialogDelete(props) {
           />
           </DialogContent>
           <DialogContent>
-          <a className="neon-bt mx-auto">
+          <a className="neon-bt mx-auto ">
           <span></span>
           <span></span>
           <span></span>
@@ -82,7 +82,7 @@ export default function DialogDelete(props) {
           Você deseja realmente excluir este produto?
           </a>
           <br></br>
-          <cite className="text-xs">Essa ação é irreversível.</cite>
+          <cite className="text-xs text-black">Essa ação é irreversível.</cite>
         </DialogContent>
           <DialogActions>
           <Button onClick={handleCloseDelete} color="primary">

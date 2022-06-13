@@ -29,7 +29,7 @@ function App() {
     <Header/>
     <div className="container px-8 py-32 bg-black max-w-7xl mx-auto mt-8"> 
     <div className="mb-4">
-    <h1 className="font-sans italic text-white text-3xl font-bold underline decoration-indigo-900 hover:decoration-">Produtos Disponíveis</h1>
+    <h1 className="font-sans italic text-white text-3xl font-bold underline decoration-indigo-900 hover:decoration-">Produtos Disponíveis </h1>
     <div className="flex justify-end">
     <Link href="/registrar">
       <button className="px-4 py-2 rounded-md bg-black border border-2 border-indigo-900 text-white text-base transition ease-in-out delay-150 bg-black hover:-translate-y-1 hover:scale-110 hover:bg-indigo-900 duration-300" href="/">Registrar</button>

@@ -15,16 +15,6 @@ const options = [
 
 function App() {
 
-  if (typeof window === 'object') {
-    
-    $(document).ready(function() {
-      $("#preco").keyup(function() {
-          $("#preco").val(this.value.match(/[0-9]*/));
-      });
-    });
-
-    }
-
 
   const [values, setValues] = useState();
 
@@ -46,16 +36,23 @@ function App() {
 
     const handleClickButton = () =>{
 
+      if (window.confirm("Você deseja realmente registrar este item?")) {
+       
+        
+        Axios.post("http://localhost:3002/registrarProduto",{
+          produto: values.produto,
+          desc: values.desc,
+          preco: values.preco,
+          
+        }).then((response)=>{
+          console.log(response);
+        })    
 
-    Axios.post("http://localhost:3002/registrarProduto",{
-      produto: values.produto,
-      desc: values.desc,
-      preco: values.preco,
-      
-    }).then((response)=>{
-      console.log(response);
-    })
-    
+        alert(values.produto + " registrado com Sucesso!"); 
+
+      } else {
+
+      }
 
 
 }
@@ -128,7 +125,7 @@ function App() {
           <small className="italic text-gray-600">Preço do Produto</small>
 						<label htmlFor="preco" className="sr-only">Preço do Produto</label>
 						<input id="preco"
-            type="text"
+            type="number"
             name="preco"
             maxlength="5"
             pattern="([0-9]{3})"  

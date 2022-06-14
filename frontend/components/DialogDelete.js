@@ -24,14 +24,24 @@ export default function DialogDelete(props) {
   });
 
   const handleDeleteProduto = () => {
-    Axios.delete(`http://localhost:3002/deleteProduto/${editValues.id}`).then(() => {
-      props.setListCard(
-        props.listCard.filter((value) => {
-          return value.id != editValues.id;
-        })
-      );
-    });
-    handleCloseDelete();
+
+    if (window.confirm("Você tem certeza, absoluta, absoluta que quer DELETAR este produto?")) {
+       
+      Axios.delete(`http://localhost:3002/deleteProduto/${editValues.id}`).then(() => {
+        props.setListCard(
+          props.listCard.filter((value) => {
+            return value.id != editValues.id;
+          })
+        );
+      });
+      handleCloseDelete();
+
+      alert(editValues.produto + " deletado com sucesso.");
+
+    } else {
+
+    }
+
   };
 
   return (

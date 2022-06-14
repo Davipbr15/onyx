@@ -11,15 +11,6 @@ import $ from 'jquery';
 
 export default function FormDialog(props) {
 
-  if (typeof window === 'object') {
-    
-    $(document).ready(function() {
-      $("#preco").keyup(function() {
-          $("#preco").val(this.value.match(/[0-9]*/));
-      });
-    });
-
-    }
 
 
   const [editValues, setEditValues] = useState({
@@ -43,7 +34,10 @@ export default function FormDialog(props) {
   const [listCard,setListCard] = useState();
 
   const handleEditProduto = () => {
-    Axios.put("http://localhost:3002/editProdutos", {
+
+    if (window.confirm("Você deseja realmente editar este item?")) {
+       
+      Axios.put("http://localhost:3002/editProdutos", {
       id: editValues.id,
       produto: editValues.produto,
       desc_p: editValues.desc,
@@ -63,17 +57,35 @@ export default function FormDialog(props) {
       );
     });
     handleClose();
+
+      alert(editValues.produto + " editado com sucesso!"); 
+
+    } else {
+
+    }
+
   };
 
   const handleDeleteProduto = () => {
-    Axios.delete(`http://localhost:3002/deleteProduto/${editValues.id}`).then(() => {
-      props.setListCard(
-        props.listCard.filter((value) => {
-          return value.id != editValues.id;
-        })
-      );
-    });
-    handleClose();
+
+    if (window.confirm("Você deseja realmente DELETAR este item?")) {
+       
+    
+      Axios.delete(`http://localhost:3002/deleteProduto/${editValues.id}`).then(() => {
+        props.setListCard(
+          props.listCard.filter((value) => {
+            return value.id != editValues.id;
+          })
+        );
+      });
+      handleClose();
+
+      alert(editValues.produto + " deletado com sucesso!"); 
+
+    } else {
+
+    }
+
   };
 
   return (
@@ -115,7 +127,7 @@ export default function FormDialog(props) {
             fullWidth
           />
           <TextField
-            type="text"
+            type="number"
             name="preco"  
             min="0"
             max="9999"
